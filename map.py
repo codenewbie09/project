@@ -5,7 +5,7 @@ def functionone():
     i = int(input("Pressure(psi):"))
     Npm = i*6894.76
     rad = float(input("Rad B7 bolt:"))
-    Ar = (3.14)*(rad*2)
+    Ar = (3.14)*(rad**2)
     m = float(input("Mass:"))
 
     v_ini = Npm*Ar/(m*(10**(1/2)))
