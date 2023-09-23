@@ -13,6 +13,14 @@ def functionone():
     r = (v_ini**2)/9.8
     return r/1000
 
+def functiontwo():
+
+    tMass = float(input("Mass CO(tonnes):"))
+    kMass = tMass*1000
+    Cst = 8.0984206345889*(10**(-3))
+    tD = (Cst)*((kMass)**10(1/3))
+    v=float(input("Velocity wind(m/s):"))
+    return v*tD
 
 # Create a map centered on India
 india_map = folium.Map(location=[20.5937, 78.9629], zoom_start=5)
@@ -38,11 +46,31 @@ for marker in marker_data:
 
 # Define circular areas (buffers)
 circle_data = [
-    {"location": [22.331667, 69.747222], "radius": functionone(), "color": "blue", "fill": True},
-    {"location": [20.247639, 86.598194], "radius": functionone(), "color": "green", "fill": True},
+    {"location": [22.331667, 69.747222], "radius": functionone(), "color": "red", "fill": True},
+    {"location": [20.247639, 86.598194], "radius": functionone(), "color": "red", "fill": True},
     {"location": [13.160444, 80.277528], "radius": functionone(), "color": "red", "fill": True},
-    {"location": [22.048028, 88.106528], "radius": functionone(), "color": "purple", "fill": True},
-    {"location": [27.390833, 95.618611], "radius": functionone(), "color": "purple", "fill": True},
+    {"location": [22.048028, 88.106528], "radius": functionone(), "color": "red", "fill": True},
+    {"location": [27.390833, 95.618611], "radius": functionone(), "color": "red", "fill": True},
+    # Add more circular areas as needed
+]
+
+# Add circular areas to the map
+for circle in circle_data:
+    folium.Circle(
+        location=circle["location"],
+        radius=circle["radius"],
+        color=circle["color"],
+        fill=circle["fill"],
+        fill_opacity=0.4,  # Adjust the fill opacity as needed
+    ).add_to(india_map)
+
+# Define circular areas (buffers)
+circle_data = [
+    {"location": [22.331667, 69.747222], "radius": functiontwo(), "color": "blue", "fill": True},
+    {"location": [20.247639, 86.598194], "radius": functiontwo(), "color": "blue", "fill": True},
+    {"location": [13.160444, 80.277528], "radius": functiontwo(), "color": "blue", "fill": True},
+    {"location": [22.048028, 88.106528], "radius": functiontwo(), "color": "blue", "fill": True},
+    {"location": [27.390833, 95.618611], "radius": functiontwo(), "color": "blue", "fill": True},
     # Add more circular areas as needed
 ]
 
@@ -59,4 +87,5 @@ for circle in circle_data:
 
 # Display the map
 india_map.save("india_map.html")
+
 
